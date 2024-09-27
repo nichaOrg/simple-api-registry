@@ -3,4 +3,4 @@ services:
     container_name: api_registry
     image: horiii/cicd:lastest
     ports:
-      - "5002:5001"
+      - "5001:5000"
