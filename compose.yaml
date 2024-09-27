@@ -1,6 +1,6 @@
 services:
   web:
-    container_name: api
+    container_name: api_registry
     image: horiii/cicd:lastest
     ports:
       - "5001:5000"
