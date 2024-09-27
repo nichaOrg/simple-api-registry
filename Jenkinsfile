@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Clone simple-api repository') {
             steps {
-                git url: 'https://github.com/nichaOrg/simple-api.git', branch: 'main'
+                git url: 'https://github.com/nichaOrg/simple-api-registry.git', branch: 'main'
             }
         }
 
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     dir('./robot3/') {
-                        git url: 'https://github.com/nichaOrg/simple-api-robot.git', branch: 'main'
+                        git url: 'https://github.com/nichaOrg/simple-api-robot-registry.git', branch: 'main'
                     }
                     sh 'cd ./robot3 && robot test_robot.robot'
                 }
@@ -39,15 +39,15 @@ pipeline {
             steps {
                 script {
                     // Authenticate to GitHub Container Registry
-                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'my-github-token', variable: 'GITHUB_TOKEN')]) {
                         sh 'echo $GITHUB_TOKEN | docker login ghcr.io -u Horiiya --password-stdin'
                     }
 
                     // Build and tag the Docker image
-                    sh 'docker build -t ghcr.io/horiiya/simple-api:latest .'
+                    sh 'docker build -t ghcr.io/horiiya/simple-api-registry:latest .'
 
                     // Push the image to GitHub Container Registry
-                    sh 'docker push ghcr.io/horiiya/simple-api:latest'
+                    sh 'docker push ghcr.io/horiiya/simple-api-registry:latest'
                 }
             }
         }
@@ -73,12 +73,12 @@ pipeline {
             steps {
                 script {
                 // เข้าสู่ระบบ GitHub Container Registry
-                withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                withCredentials([string(credentialsId: 'my-github-token', variable: 'GITHUB_TOKEN')]) {
                     sh 'echo $GITHUB_TOKEN | docker login ghcr.io -u Horiiya --password-stdin'
                 }
 
                 // ดึงภาพจาก GitHub Container Registry
-                sh 'docker pull ghcr.io/horiiya/simple-api:latest'
+                sh 'docker pull ghcr.io/horiiya/simple-api-registry:latest'
 
                 // นำขึ้นคอนเทนเนอร์ด้วยภาพที่ดึงมา
                 sh 'docker compose down && docker system prune -a -f && docker compose up -d --build'
