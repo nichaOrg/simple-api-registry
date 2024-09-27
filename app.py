@@ -5,12 +5,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Hello, World Test Na Ja"
+    return "Hello, World ได้สักทีเถอะ"
 
 
 @app.route("/getcode", methods=["GET"])
 def getcode():
-    return "getcode test1"
+    return "getcode test2"
 
 
 @app.route("/plus/<num1>/<num2>", methods=["GET"])
