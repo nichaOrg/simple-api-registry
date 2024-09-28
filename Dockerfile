@@ -11,4 +11,4 @@ RUN pip install -r /app/requirements.txt
 EXPOSE 5000
 COPY . .
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0","--port","5000"]
+CMD ["flask", "run", "--host", "0.0.0.0"]
