@@ -1,10 +1,14 @@
-# syntax=docker/dockerfile:1
 FROM python:3.7-alpine
+
 WORKDIR /app
-# ENV FLASK_APP=app.py
-# ENV FLASK_RUN_HOST=0.0.0.0
+
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r /app/requirements.txt
+
 EXPOSE 5000
 COPY . .
+
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0","--port","5000"]
