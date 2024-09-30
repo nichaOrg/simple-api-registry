@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Environment variables
 ENV FLASK_APP=app.py
-ENV FLASK_ENV=production  # Set Flask to production mode
+ENV FLASK_ENV=production
 
 # Install dependencies
 COPY requirements.txt /app/requirements.txt
