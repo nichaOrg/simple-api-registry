@@ -9,7 +9,7 @@ class TestApp(unittest.TestCase):
 
     def test_getcode(self):
         response = self.app.get("/getcode")  # ใช้ test client เพื่อเรียก endpoint
-        self.assertEqual(response.data.decode(), "getcode test2")  # ตรวจสอบค่าที่ส่งกลับ
+        self.assertEqual(response.data.decode(), "getcode")  # ตรวจสอบค่าที่ส่งกลับ
         
     def test_plus(self):
         response = self.app.get("/plus/5/6")
@@ -25,6 +25,17 @@ class TestApp(unittest.TestCase):
         response = self.app.get("/plus/a/4")
         self.assertEqual(response.json, {"error_msg": "inputs must be numbers"})
 
+    def test_is_prime_17 (self):
+        response = self.app.get("/is_prime/17")
+        self.assertEqual(response.data.decode(), "true")
+
+    def test_is_prime_36 (self):
+        response = self.app.get("/is_prime/36")
+        self.assertEqual(response.data.decode(), "false")
+
+    def test_is_prime_18219 (self):
+        response = self.app.get("/is_prime/13219")
+        self.assertEqual(response.data.decode(), "true")
 
 if __name__ == "__main__a":
     unittest.main()
