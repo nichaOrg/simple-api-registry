@@ -25,6 +25,16 @@ def calculate(num1, num2):
 
     return results
 
+@app.route("/is_prime/<num>", methods=["GET"])
+def prime(num):
+    num = int(num)
+    if num < 2:
+        return "false"
+    for i in range(2, int(num**0.5)+1):
+        if num % i ==0:
+            return "false"
+    
+    return "true"
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
