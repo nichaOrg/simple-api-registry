@@ -14,8 +14,8 @@ pipeline {
                 script {
                     // Build and test API
                     sh 'pip install -r requirements.txt' // Install dependencies
-                    sh 'python3 app.py &'
-                    sh 'sleep 5' // Wait for API to start
+                    sh 'python3 app.py'
+                    // sh 'sleep 5' // Wait for API to start
 
                     // Run unit tests
                     sh 'python3 test_unit.py'
