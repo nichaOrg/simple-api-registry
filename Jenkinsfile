@@ -69,20 +69,6 @@ pipeline {
             }
         }
 
-        stage('Clean Workspace') {
-            steps {
-                sh 'docker compose down'
-                sh 'docker system prune -a -f'
-            }
-        }
-
-        // Pull and compose up in Preprod
-        stage('Compose Up') {
-            steps {
-                sh 'docker compose up -d --build'
-            }
-        }
-
         stage('Running Preprod') {
             agent {
                 label 'preprod'
