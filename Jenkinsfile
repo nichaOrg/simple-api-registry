@@ -27,8 +27,8 @@ pipeline {
         }
         stage('Create Images of Simple API') {
             steps {
-                sh 'docker stop simple-api-container'
-                sh 'docker rm simple-api-container'
+                sh 'docker stop simple-api-container | true'
+                sh 'docker rm simple-api-container | true'
                 sh 'docker build -t simple-api .'
             // Build Docker image using provided Dockerfile
             }
