@@ -1,14 +1,24 @@
 FROM python:3.7-alpine
 
+# Set working directory
 WORKDIR /app
 
+# Environment variables
 ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_ENV=production  # Set Flask to production mode
 
+# Install dependencies
 COPY requirements.txt /app/requirements.txt
-RUN pip install -r /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
+# Install Gunicorn
+RUN pip install gunicorn
+
+# Expose the port Gunicorn will run on
 EXPOSE 5000
+
+# Copy project files
 COPY . .
 
-CMD ["flask", "run", "--host", "0.0.0.0"]
+# Run the application with Gunicorn
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
