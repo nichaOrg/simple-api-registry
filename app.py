@@ -61,6 +61,15 @@ def avg(num1,num2):
     except:
         result = {"error_msg": "inputs must be numbers eiei"}
     return result
+@app.route("/power/<num1>/<num2>",methods=["GET"])
+def power(num1,num2):
+    try:
+        num1 = int(num1)
+        num2 = int(num2)
+        result=str(pow(num1,num2))
+    except:
+        result = {"error_msg": "inputs must be numbers eiei"}
+    return result
 
 # if __name__ == "__main__":
 #     app.run()

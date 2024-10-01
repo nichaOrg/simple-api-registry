@@ -30,6 +30,16 @@ class TestApp(unittest.TestCase):
     def test_avg_4_5(self):
         response = app.avg(4, 5)
         self.assertEqual(response,"4.5")
+    def test_power_2_0(self):
+        response = app.power(2,0)
+        self.assertEqual(response,"1")
+    def test_power_3_2(self):
+        response = app.power(3,2)
+        self.assertEqual(response,"9")
+    def test_power_2_n2(self):
+        response = app.power(2,-2)
+        self.assertEqual(response,"0.25")
+
 
 if __name__ == "__main__":
     unittest.main()
