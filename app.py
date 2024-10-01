@@ -52,5 +52,5 @@ def minus(num1, num2):
 
     return result
 
-if __name__ == "__main__":
-    app.run()
+# if __name__ == "__main__":
+#     app.run()
