@@ -26,6 +26,10 @@ class TestApp(unittest.TestCase):
     def test_minus_1_2(self):
         response = app.minus(1, 2)
         self.assertEqual(response, "-1") 
+    
+    def test_avg_4_5(self):
+        response = app.avg(4, 5)
+        self.assertEqual(response,"4.5")
 
 if __name__ == "__main__":
     unittest.main()
