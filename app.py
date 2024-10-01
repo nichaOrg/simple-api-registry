@@ -48,7 +48,7 @@ def minus(num1, num2):
         num2 = int(num2)
         result = str(num1 - num2)
     except:
-        result = {"error_msg": "inputs must be numbers"}
+        result = {"error_msg": "inputs must be numbers eiei"}
 
     return result
 
