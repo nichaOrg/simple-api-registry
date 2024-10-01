@@ -39,6 +39,12 @@ class TestApp(unittest.TestCase):
     def test_power_2_n2(self):
         response = app.power(2,-2)
         self.assertEqual(response,"0.25")
+    def test_multiply_5_5(self):
+        response = app.multiply(5,5)
+        self.assertEqual(response,"25")
+    def test_multiply_2_9(self):
+        response = app.multiply(2,9)
+        self.assertEqual(response,"18")
 
 
 if __name__ == "__main__":
