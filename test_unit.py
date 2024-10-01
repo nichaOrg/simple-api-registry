@@ -45,6 +45,10 @@ class TestApp(unittest.TestCase):
     def test_multiply_2_9(self):
         response = app.multiply(2,9)
         self.assertEqual(response,"18")
+        
+    def test_multiply_2_2(self):
+        response = app.multiply(2,2)
+        self.assertEqual(response,"4")
 
 
 if __name__ == "__main__":
