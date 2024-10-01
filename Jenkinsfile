@@ -13,17 +13,34 @@ pipeline {
             steps {
                 script {
                     // Build and test API
-                    sh 'pip install -r requirements.txt' // Install dependencies
-                    sh 'python3 app.py &'
-                    sh 'sleep 5' // Wait for API to start
+                    
+                    // sh 'pip install -r requirements.txt' // Install dependencies
+                    sh 'pip install --no-cache-dir --upgrade -r requirements.txt'
+                    sh 'python3 app.py'
+                    
+                    // sh 'sleep 5' // Wait for API to start
 
                     // Run unit tests
                     sh 'python3 test_unit.py'
                 }
             }
         }
+        stage('Create Images of Simple API') {
+            steps {
+                sh 'docker stop simple-api-container | true'
+                sh 'docker rm simple-api-container | true'
+                sh 'docker build -t simple-api .'
+            // Build Docker image using provided Dockerfile
+            }
+        }
+        stage('Create Container of Simple API') {
+            steps {
+                sh 'docker run -d -p 5000:5000 --name simple-api-container simple-api'
+            // Create Docker container from the built image
+            }
+        }
 
-        stage('Build and Test Robot Framework') {
+         stage('Build and Test Robot Framework') {
             steps {
                 script {
                     dir('./robot3/') {
@@ -34,7 +51,7 @@ pipeline {
             }
         }
 
-        // Build and push image to GitHub Container Registry
+         // Build and push image to GitHub Container Registry
         stage('Build and Push Docker Image') {
             steps {
                 script {
@@ -49,20 +66,6 @@ pipeline {
                     // Push the image to GitHub Container Registry
                     sh 'docker push ghcr.io/horiiya/simple-api-registry:latest'
                 }
-            }
-        }
-
-        stage('Clean Workspace') {
-            steps {
-                sh 'docker compose down'
-                sh 'docker system prune -a -f'
-            }
-        }
-
-        // Pull and compose up in Preprod
-        stage('Compose Up') {
-            steps {
-                sh 'docker compose up -d --build'
             }
         }
 
