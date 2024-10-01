@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Create Container of Simple API') {
             steps {
-                sh 'docker run -d -p 5000:5000 --name simple-api-container simple-api'
+                sh 'docker run -d -p 5001:5000 --name simple-api-container simple-api'
             // Create Docker container from the built image
             }
         }

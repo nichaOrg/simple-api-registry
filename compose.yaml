@@ -10,4 +10,4 @@ services:
     container_name: api_registry
     image: ghcr.io/horiiya/simple-api-registry:latest  # เปลี่ยนเป็น image ที่ถูกต้อง
     ports:
-      - "5001:5000"
+      - "5002:5000"
