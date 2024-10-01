@@ -41,5 +41,16 @@ def hello(name):
     name = str(name)
     return "Hello " + name
 
-# if __name__ == "__main__":
-#     app.run()
+@app.route("/minus/<num1>/<num2>", methods=["GET"])
+def minus(num1, num2):
+    try:
+        num1 = int(num1)
+        num2 = int(num2)
+        result = str(num1 - num2)
+    except:
+        result = {"error_msg": "inputs must be numbers"}
+
+    return result
+
+if __name__ == "__main__":
+    app.run()

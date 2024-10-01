@@ -21,7 +21,11 @@ class TestApp(unittest.TestCase):
 
     def test_hello_123(self):
         response = app.hello("123")
-        self.assertEqual(response, "Hello 123")   
+        self.assertEqual(response, "Hello 123") 
+
+    def test_minus_1_2(self):
+        response = app.minus(1, 2)
+        self.assertEqual(response, "-1") 
 
 if __name__ == "__main__":
     unittest.main()
