@@ -50,6 +50,11 @@ class TestApp(unittest.TestCase):
         response = app.multiply(2,2)
         self.assertEqual(response,"4")
 
-
+    def test_More1000_999(self):
+        response = app.isMoreThan1000(999)
+        self.assertEqual(response,"this result is True")
+    def test_More1000_990dot9(self):
+        response = app.isMoreThan1000(990.9)
+        self.assertEqual(response,"this result is True")
 if __name__ == "__main__":
     unittest.main()
