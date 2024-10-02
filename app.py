@@ -102,19 +102,6 @@ def mod(num1,num2):
         result = {"error_msg": "inputs must be numbers eiei"}
     return result
 
-@app.route("/More1000/<num1>",methods=["GET"])
-def isMoreThan1000(num1):
-    try:
-        num1 = int(num1)
-        if num1 > 1000 :
-            result = "this result is False"
-        else :
-            result = "this result is True"
-        
-    except:
-        result = {"error_msg": "inputs must be numbers eiei"}
-    return result
-
 
 # if __name__ == "__main__":
 #     app.run()
