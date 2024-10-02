@@ -61,6 +61,7 @@ def avg(num1,num2):
     except:
         result = {"error_msg": "inputs must be numbers eiei"}
     return result
+
 @app.route("/power/<num1>/<num2>",methods=["GET"])
 def power(num1,num2):
     try:
@@ -92,6 +93,21 @@ def devide(num1,num2):
         result = {"error_msg": "inputs must be numbers eiei"}
     return result
 
+@app.route("/mul5/<num1>",methods=["GET"])
+def mul5(num1):
+    def is_integer(num):
+        return float(num1) % 1 == 0
+    try:
+        num1 = float(num1)
+        if (is_integer(num1)):
+            result = str(int(num1)*5)
+        else:
+            result = str(float(num1)*5)
+
+    except:
+        result = {"error_msg": "inputs must be numbers eiei"}
+    return result
+
 @app.route("/mod/<num1>/<num2>",methods=["GET"])
 def mod(num1,num2):
     try:
@@ -100,6 +116,19 @@ def mod(num1,num2):
         result=str(num1%num2)
     except:
         result = {"error_msg": "inputs must be numbers eiei"}
+    return result
+
+@app.route("/More1000/<num1>",methods=["GET"])
+def isMoreThan1000(num1):
+    try:
+        num1 = int(num1)
+        if num1 > 1000 :
+            result = "this result is False"
+        else :
+            result = "this result is True"
+        
+    except:
+        result = {"error_msg": "inputs must be numbers eiei"+num1}
     return result
 
 

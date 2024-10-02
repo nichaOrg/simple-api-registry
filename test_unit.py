@@ -27,6 +27,16 @@ class TestApp(unittest.TestCase):
         response = app.minus(1, 2)
         self.assertEqual(response, "-1") 
     
+    def test_x_is_1(self):
+        response = app.mul5(1)
+        self.assertEqual(response,"5")
+    def test_x_is_neg10(self):
+        response = app.mul5(-10)
+        self.assertEqual(response,"-50")
+    def test_x_is_1dot5(self):
+        response = app.mul5(1.5)
+        self.assertEqual(response,"7.5")
+
     def test_avg_4_5(self):
         response = app.avg(4, 5)
         self.assertEqual(response,"4.5")
