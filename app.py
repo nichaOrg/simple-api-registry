@@ -81,5 +81,40 @@ def multiply(num1,num2):
         result = {"error_msg": "inputs must be numbers eiei"}
     return result
 
+@app.route("/divide/<num1>/<num2>",methods=["GET"])
+def devide(num1,num2):
+    try:
+        num1 = int(num1)
+        num2 = int(num2)
+        # result=str(int(num1/num2)) ไม่มีทศนิยม
+        result = "{:.3f}".format(num1 / num2)
+    except:
+        result = {"error_msg": "inputs must be numbers eiei"}
+    return result
+
+@app.route("/mod/<num1>/<num2>",methods=["GET"])
+def mod(num1,num2):
+    try:
+        num1 = int(num1)
+        num2 = int(num2)
+        result=str(num1%num2)
+    except:
+        result = {"error_msg": "inputs must be numbers eiei"}
+    return result
+
+@app.route("/More1000/<num1>",methods=["GET"])
+def isMoreThan1000(num1):
+    try:
+        num1 = int(num1)
+        if num1 > 1000 :
+            result = "this result is False"
+        else :
+            result = "this result is True"
+        
+    except:
+        result = {"error_msg": "inputs must be numbers eiei"}
+    return result
+
+
 # if __name__ == "__main__":
 #     app.run()
